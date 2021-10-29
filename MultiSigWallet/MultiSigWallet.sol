@@ -1,11 +1,11 @@
 // SPDX-License-Identifier: MIT
-pragma solidity >0.4.0;
+pragma solidity 0.8.9;
 pragma experimental ABIEncoderV2;
 
 contract MultiSigWallet {
     uint minApprovers;   
     
-    address beneficiary;
+    address payable beneficiary;
     address owner;
     
     mapping (address => bool) approvedBy;
@@ -16,8 +16,8 @@ contract MultiSigWallet {
     constructor(
         address[] memory _approvers,
         uint _minApprovers,
-        address _beneficiary
-        ) public payable {
+        address payable _beneficiary
+        ) payable {
         
         require(_minApprovers <= _approvers.length, "Req number of approvers shousl be less than number of approvers");
         
@@ -44,15 +44,15 @@ contract MultiSigWallet {
             // Warning: Failure condition of 'send' ignored. Consider using 'transfer' instead.
             // beneficiary.transfer(address(this).balance);
             // "send" and "transfer" are only available for objects of type "address payable", not "address".
-            beneficiary.send(address(this).balance);
-            selfdestruct(owner);
+            beneficiary.transfer(address(this).balance);
+            selfdestruct(payable(owner));
         }
     }
     
     function reject() public {
         require(isApprover[msg.sender], "Not an approver");
         
-        selfdestruct(owner);
+        selfdestruct(payable(owner));
     }
     
 }

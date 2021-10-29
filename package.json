@@ -1,0 +1,23 @@
+{
+  "name": "solidity-contracts",
+  "version": "1.0.0",
+  "description": "Developing Applications on Ethereum Blockchain from pPluralSight using Remix IDE https://remix.ethereum.org/ ## Contracts",
+  "main": "index.js",
+  "scripts": {
+    "solc:multisig":"solc --combined-json=abi,bin,metadata --output-dir ./MultiSigWallet MultiSigWallet/MultiSigWallet.sol --overwrite",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/klish3/solidity-contracts.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/klish3/solidity-contracts/issues"
+  },
+  "homepage": "https://github.com/klish3/solidity-contracts#readme",
+  "dependencies": {
+    "solc": "^0.4.0"
+  }
+}
